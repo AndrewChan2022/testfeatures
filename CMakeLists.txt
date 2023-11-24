@@ -252,6 +252,7 @@ endif()
 if (MSVC)
     set(CXX_STANDARD "/std:c++latest")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX_STANDARD} /W0 /Zc:__cplusplus")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /permissive /D_UNICODE /DUNICODE") # conformance, unicode
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX_STANDARD} -fstrict-aliasing -Wno-unknown-pragmas -Wno-unused-function -Wno-deprecated-declarations")
 endif()
@@ -646,18 +647,20 @@ endfunction()
 # add_subdirectory(${EXTERNAL}/libgtest/rtr)
 # add_subdirectory(${LIBRARIES}/math)
 # add_subdirectory(${EXTERNAL}/imgui/rtr)
+
 add_subdirectory(${EXTERNAL}/stb/rtr)
 add_subdirectory(${EXTERNAL}/getopt)
+add_subdirectory(${EXTERNAL}/glm)
+add_subdirectory(${EXTERNAL}/glad)
+add_subdirectory(${EXTERNAL}/glfw)
 
 set(FEYNMAN_SAMPLES_BINARY_DIR ${PROJECT_BINARY_DIR}/samples)
 
 
 if (IS_HOST_PLATFORM)
 
-    add_subdirectory(${FEYNMAN}/samples)
+    add_subdirectory(${TESTFEATURES}/samples)
     
-    
-
 endif()
 
 # Generate exported executables for cross-compiled builds (Android, WebGL, and iOS)

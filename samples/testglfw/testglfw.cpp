@@ -22,11 +22,13 @@ int main(int argc, char** argv)
         exit(EXIT_FAILURE);
     }
 
-    glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+    int winCount = 4;
+    // glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
 
     glfwGetMonitorWorkarea(glfwGetPrimaryMonitor(), &xpos, &ypos, NULL, &height);
 
-    for (int i = 0;  i < 4;  i++)
+
+    for (int i = 0;  i < winCount;  i++)
     {
         const int size = height / 5;
         const struct
@@ -40,8 +42,9 @@ int main(int argc, char** argv)
             { 0.98f, 0.74f, 0.04f }
         };
 
-        if (i > 0)
-            glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_FALSE);
+        if (i > 0) {
+            //glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_FALSE);
+        }
 
         glfwWindowHint(GLFW_POSITION_X, xpos + size * (1 + (i & 1)));
         glfwWindowHint(GLFW_POSITION_Y, ypos + size * (1 + (i >> 1)));
@@ -58,13 +61,13 @@ int main(int argc, char** argv)
         glfwSetInputMode(windows[i], GLFW_STICKY_KEYS, GLFW_TRUE);
 
         glfwMakeContextCurrent(windows[i]);
-        gladLoadGL(glfwGetProcAddress);
+        gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         glClearColor(colors[i].r, colors[i].g, colors[i].b, 1.f);
     }
 
     for (;;)
     {
-        for (int i = 0;  i < 4;  i++)
+        for (int i = 0;  i < winCount;  i++)
         {
             glfwMakeContextCurrent(windows[i]);
             glClear(GL_COLOR_BUFFER_BIT);

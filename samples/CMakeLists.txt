@@ -12,6 +12,7 @@ set(GENERATION_ROOT ${CMAKE_CURRENT_BINARY_DIR})
 # ==================================================================================================
 
 if (MSVC)
+    set(COMPILER_FLAGS )
 else()
     set(COMPILER_FLAGS
             -Wno-extern-c-compat

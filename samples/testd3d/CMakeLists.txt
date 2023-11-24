@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.19)
 
 
-set(PRJNAME testglfw)
+set(PRJNAME testd3d)
 project(${PRJNAME})
 
 
@@ -22,8 +22,6 @@ file(GLOB src "./*.cpp" "./*.h" "./*.hpp")
 
 include_directories(${GENERATION_ROOT})
 include_directories(./)
-include_directories(${EXTERNAL}/glfw/include)
-include_directories(${EXTERNAL}/glad/include)
 
 ### exe
 
@@ -34,7 +32,6 @@ add_executable(${PRJNAME} ${src})
 target_link_libraries(${PRJNAME} PUBLIC glm)
 target_link_libraries(${PRJNAME} PUBLIC glfw)
 target_link_libraries(${PRJNAME} PUBLIC glad)
-# target_link_libraries(${PRJNAME} PRIVATE feynman)
 
 ### compiler
 
